@@ -1,0 +1,122 @@
+:root {
+  --color-bg: #fff;
+  --color-fg: #ddd;
+  --color-text: #333;
+  --color-player-1: lightskyblue;
+  --color-player-2: darkseagreen;
+  --tile-size: 100px;
+  --font-title-size: 3rem;
+  --font-text-size: 2rem;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.board {
+  width: calc(3 * var(--tile-size));
+  display: flex;
+  flex-wrap: wrap;
+  transition: 0.3s;
+}
+
+.board.small {
+  --tile-size: calc(50px);
+  --font-title-size: 2rem;
+}
+
+.tile {
+  box-sizing: border-box;
+  background-color: var(--color-bg);
+  border: 1px var(--color-text) solid;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  font-size: var(--font-title-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.tile::before {
+  content: attr(data-player);
+  line-height: var(--tile-size);
+}
+
+.tile:nth-child(3n - 2) {
+  border-left: none;
+}
+
+.tile:nth-child(3n) {
+  border-right: none;
+}
+
+.tile:nth-last-child(-n + 3) {
+  border-bottom: none;
+}
+
+.tile:nth-child(-n + 3) {
+  border-top: none;
+}
+
+.tile:hover {
+  background-color: var(--color-fg);
+  cursor: pointer;
+}
+
+.tile[data-player]:hover {
+  background-color: var(--color-bg);
+  cursor: default;
+}
+
+.end {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.end.hide {
+  display: none;
+  overflow: hidden;
+}
+
+.end .title {
+  margin: 0;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: var(--font-title-size);
+}
+
+.end .btn {
+  align-self: center;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 2px var(--color-text) solid;
+  cursor: pointer;
+  font-size: var(--font-text-size);
+}
+
+.btn:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
